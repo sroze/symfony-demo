@@ -29,4 +29,5 @@ framework:
     ide: ~
     validation: { enable_annotations: true }
     form: ~
+    serializer: ~
     message: ~
