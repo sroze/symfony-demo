@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\MessageHandler;
 
 use App\Entity\Comment;
@@ -35,7 +44,7 @@ class CheckSpamOnPostCommentsHandler
         }
     }
 
-    private function commentIsSpam(Comment $comment) : bool
+    private function commentIsSpam(Comment $comment): bool
     {
         try {
             $response = $this->httpClient->request('post', sprintf('https://%s.rest.akismet.com/1.1/comment-check', $this->akismetApiKey), [
@@ -51,6 +60,6 @@ class CheckSpamOnPostCommentsHandler
             throw new \RuntimeException(sprintf('Was unable to check spam status of comment #%d', $comment->getId()), $e->getCode(), $e);
         }
 
-        return 'true' == $response->getBody()->getContents();
+        return 'true' === $response->getBody()->getContents();
     }
 }
