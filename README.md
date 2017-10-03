@@ -68,13 +68,75 @@ terminal.
 > For more details, see:
 > https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
 
-### Asynchronous messages
+### Asynchronous processing
 
-This application uses the Message component for spam validation of the comments. This is by default done synchronously 
-but you can activate the asynchronous processing by:
-1. 
-2. 
-3. 
+This application allows you to purge comments considered as spam using Akismet's API. While using the "Check comments"
+button in the backend, this is done synchronously by default. As the processing can be quite slow, it can be nice to
+do this processing asynchronously. In order to do so, follow these steps:
+
+1. Pick and install a [Message adapter](https://github.com/sroze/symfony/blob/add-message-component/src/Symfony/Component/Message/README.md#adapters). 
+We will use PHP enqueue and its AMQP adapter for this example:
+```
+composer req sroze/enqueue-bridge:dev-master enqueue/amqp-ext
+```
+
+2. Configure the adapter.
+```yaml
+# config/packages/enqueue.yaml
+enqueue:
+    transport:
+        default: 'amqp'
+        amqp:
+            host: 'localhost'
+            port: 5672
+            user: 'guest'
+            pass: 'guest'
+            vhost: '/'
+            receive_method: basic_consume
+    client: ~
+```
+
+3. Register your consumer & producer
+```yaml
+# config/services.yaml
+services:
+    app.amqp_consumer:
+        class: Sam\Symfony\Bridge\EnqueueMessage\EnqueueConsumer
+        arguments:
+        - "@message.transport.default_decoder"
+        - "@enqueue.transport.amqp.context"
+        - "messages" # Name of the queue
+
+    app.amqp_producer:
+        class: Sam\Symfony\Bridge\EnqueueMessage\EnqueueProducer
+        arguments: 
+        - "@message.transport.default_encoder"
+        - "@enqueue.transport.amqp.context"
+        - "messages" # Name of the queue
+```
+
+4. Route your messages to the consumer
+```yaml
+# config/packages/framework.yaml
+framework:
+    message:
+        routing:
+            'App\Message\CheckSpamOnPostComments': app.amqp_producer
+```
+
+You are done. The `CheckSpamOnPostComments` messages will be sent to your local RabbitMq instance. In order to process
+them asynchronously, you need to consume the messages pushed in the queue. You can start a worker with the `message:consume`
+command:
+
+```bash
+bin/console message:consume --consumer=app.amqp_consumer
+```
+
+**Note:** if you don't have RabbitMq installed locally but have Docker, run a RabbitMq instance this way:
+```sh
+docker run -d --hostname rabbit --name rabbit -p 8080:15672 -p 5672:5672 rabbitmq:3-management
+```
+The administration console will be accessible at http://localhost:8080 
 
 Testing
 -------
