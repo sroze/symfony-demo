@@ -30,6 +30,16 @@
         {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
     </div>
 
+    <div class="section">
+        <form action="{{ url('admin_post_check_comments', {id: post.id}) }}" method="post">
+            <input type="hidden" name="token" value="{{ csrf_token('check_comments') }}" />
+            <button type="submit" class="btn btn-lg btn-block btn-primary">
+                <i class="fa fa-ban" aria-hidden="true"></i>
+                {{ 'action.check_comments'|trans }}
+            </button>
+        </form>
+    </div>
+
     {{ parent() }}
 
     {{ show_source_code(_self) }}

@@ -13,6 +13,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Message\CheckSpamOnPostComments;
 use App\Utils\Slugger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -186,5 +187,24 @@ class BlogController extends Controller
         $this->addFlash('success', 'post.deleted_successfully');
 
         return $this->redirectToRoute('admin_post_index');
+    }
+
+    /**
+     * Check spam on post's entities.
+     *
+     * @Route("/{id}/check-comments", name="admin_post_check_comments")
+     * @Method("POST")
+     * @Security("is_granted('edit', post)")
+     */
+    public function checkCommentsAction(Request $request, Post $post): Response
+    {
+        if (!$this->isCsrfTokenValid('check_comments', $request->request->get('token'))) {
+            return $this->redirectToRoute('admin_post_index');
+        }
+
+        $this->get('message_bus')->handle(new CheckSpamOnPostComments($post->getId()));
+        $this->addFlash('success', 'post.comments_checked');
+
+        return $this->redirectToRoute('admin_post_show', ['id' => $post->getId()]);
     }
 }

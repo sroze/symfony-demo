@@ -28,3 +28,5 @@ framework:
     # See https://symfony.com/doc/current/reference/configuration/framework.html#ide
     ide: ~
     validation: { enable_annotations: true }
+    form: ~
+    message: ~

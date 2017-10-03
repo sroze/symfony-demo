@@ -9,6 +9,7 @@
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "erusev/parsedown": "^1.6",
         "ezyang/htmlpurifier": "^4.9",
+        "guzzlehttp/guzzle": "~6.0",
         "sensio/framework-extra-bundle": "^3.0",
         "sensiolabs/security-checker": "^4.1",
         "symfony/asset": "^3.3",
@@ -21,13 +22,13 @@
         "symfony/polyfill-apcu": "^1.4",
         "symfony/security-bundle": "^3.3",
         "symfony/swiftmailer-bundle": "^3.0",
+        "symfony/symfony": "dev-add-message-component as 3.3.9",
         "symfony/translation": "^3.3",
         "symfony/validator": "^3.3",
         "symfony/yaml": "^3.3",
         "twig/extensions": "^1.5",
         "twig/twig": "^2.4",
-        "white-october/pagerfanta-bundle": "^1.0",
-        "symfony/symfony": "dev-add-message-component as 3.3.9"
+        "white-october/pagerfanta-bundle": "^1.0"
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^3.1",

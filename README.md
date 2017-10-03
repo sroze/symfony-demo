@@ -68,6 +68,14 @@ terminal.
 > For more details, see:
 > https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
 
+### Asynchronous messages
+
+This application uses the Message component for spam validation of the comments. This is by default done synchronously 
+but you can activate the asynchronous processing by:
+1. 
+2. 
+3. 
+
 Testing
 -------
 
