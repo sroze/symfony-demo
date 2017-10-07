@@ -49,9 +49,9 @@ class CheckSpamOnPostCommentsHandler
         try {
             $response = $this->httpClient->request('post', sprintf('https://%s.rest.akismet.com/1.1/comment-check', $this->akismetApiKey), [
                 'form_params' => [
-                    'blog' => $_SERVER['HTTP_ORIGIN'],
-                    'user_ip' => $_SERVER['REMOTE_ADDR'],
-                    'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+                    'blog' => $_SERVER['HTTP_ORIGIN'] ?? 'http://localhost',
+                    'user_ip' => $_SERVER['REMOTE_ADDR'] ?? null,
+                    'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
                     'comment_content' => $comment->getContent(),
                     'comment_author' => $comment->getAuthor()->getFullName(),
                 ],
