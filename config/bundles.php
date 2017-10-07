@@ -11,6 +11,7 @@ return [
     'Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle' => ['all' => true],
     'Symfony\Bundle\TwigBundle\TwigBundle' => ['all' => true],
     'WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle' => ['all' => true],
+    'Swarrot\SwarrotBundle\SwarrotBundle' => ['all' => true],
     'Symfony\Bundle\DebugBundle\DebugBundle' => ['dev' => true, 'test' => true],
     'Symfony\Bundle\WebServerBundle\WebServerBundle' => ['dev' => true],
     'Symfony\Bundle\WebProfilerBundle\WebProfilerBundle' => ['dev' => true, 'test' => true],

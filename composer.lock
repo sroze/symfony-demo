@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "848885c9f9e9e66367c5b3645d051dcd",
+    "content-hash": "0afa77f5d3427097233e060fa99a5e89",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -481,16 +481,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "1.7.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "f8bff22d608224ed88e90b24e9d884cb10b389bb"
+                "reference": "4e013fc02347dda38671500e275b5db1ec1f5d72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/f8bff22d608224ed88e90b24e9d884cb10b389bb",
-                "reference": "f8bff22d608224ed88e90b24e9d884cb10b389bb",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/4e013fc02347dda38671500e275b5db1ec1f5d72",
+                "reference": "4e013fc02347dda38671500e275b5db1ec1f5d72",
                 "shasum": ""
             },
             "require": {
@@ -558,7 +558,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2017-09-29T15:26:21+00:00"
+            "time": "2017-10-04 22:57:58"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -1939,6 +1939,182 @@
             "time": "2017-08-22T22:18:16+00:00"
         },
         {
+            "name": "sroze/swarrot-bridge",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sroze/swarrot-bridge.git",
+                "reference": "988eba099ad9ac58ebe2f24d93c21238eb1962fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sroze/swarrot-bridge/zipball/988eba099ad9ac58ebe2f24d93c21238eb1962fe",
+                "reference": "988eba099ad9ac58ebe2f24d93c21238eb1962fe",
+                "shasum": ""
+            },
+            "require": {
+                "swarrot/swarrot-bundle": "^1.5@dev"
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sam\\Symfony\\Bridge\\SwarrotMessage\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Samuel Roze",
+                    "email": "samuel.roze@gmail.com"
+                }
+            ],
+            "description": "Swarrot bridge for Symfony Message component",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "message",
+                "swarrot",
+                "symfony"
+            ],
+            "time": "2017-10-07 16:29:30"
+        },
+        {
+            "name": "swarrot/swarrot",
+            "version": "v3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swarrot/swarrot.git",
+                "reference": "070a6a77c486d0954059cda3e97d6ec2c25ba77e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/070a6a77c486d0954059cda3e97d6ec2c25ba77e",
+                "reference": "070a6a77c486d0954059cda3e97d6ec2c25ba77e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "psr/log": "^1.0",
+                "symfony/options-resolver": "^2.8 || ^3.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^2.8",
+                "doctrine/common": "^2.3",
+                "doctrine/dbal": "^2.2",
+                "php-amqplib/php-amqplib": "^2.1",
+                "phpunit/phpunit": "^6.2",
+                "queue-interop/amqp-interop": "^0.5",
+                "queue-interop/queue-interop": "^0.5"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "^2.8",
+                "pecl-amqp": "*",
+                "php-amqplib/php-amqplib": "^2.1",
+                "queue-interop/amqp-interop": "^0.5",
+                "queue-interop/queue-interop": "^0.5",
+                "symfony/console": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Swarrot\\": "src/Swarrot"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Dolbeau",
+                    "homepage": "http://odolbeau.fr/"
+                }
+            ],
+            "description": "A simple lib to consume RabbitMQ queues",
+            "keywords": [
+                "AMQP",
+                "queue",
+                "swarrot",
+                "worker"
+            ],
+            "time": "2017-08-01T13:23:07+00:00"
+        },
+        {
+            "name": "swarrot/swarrot-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swarrot/SwarrotBundle.git",
+                "reference": "2e4539a4851bbfad6cec937a114be1779c2b04ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swarrot/SwarrotBundle/zipball/2e4539a4851bbfad6cec937a114be1779c2b04ca",
+                "reference": "2e4539a4851bbfad6cec937a114be1779c2b04ca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "psr/log": "~1.0",
+                "swarrot/swarrot": "^2.1.1|^3.0",
+                "symfony/console": "~2.4|~3.0",
+                "symfony/framework-bundle": "~2.4|~3.0",
+                "symfony/yaml": "~2.4|~3.0"
+            },
+            "require-dev": {
+                "doctrine/common": "~2.2",
+                "doctrine/dbal": "~2.2",
+                "phpunit/phpunit": "~4.5",
+                "symfony/phpunit-bridge": "~2.8|~3.0"
+            },
+            "suggest": {
+                "php-amqplib/php-amqplib": "Required if using amqp_lib"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Swarrot\\SwarrotBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Dolbeau",
+                    "homepage": "http://odolbeau.fr/"
+                }
+            ],
+            "description": "SwarrotBundle",
+            "keywords": [
+                "bundle",
+                "swarrot"
+            ],
+            "time": "2017-09-27 12:28:45"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.0.2",
             "source": {
@@ -1995,16 +2171,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.0.24",
+            "version": "v1.0.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "dc4b6fbe914c8a96559d0723cb9a02c38347604d"
+                "reference": "bc2f175435d0e2f407836857ed1a99ee6877730d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/dc4b6fbe914c8a96559d0723cb9a02c38347604d",
-                "reference": "dc4b6fbe914c8a96559d0723cb9a02c38347604d",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/bc2f175435d0e2f407836857ed1a99ee6877730d",
+                "reference": "bc2f175435d0e2f407836857ed1a99ee6877730d",
                 "shasum": ""
             },
             "require": {
@@ -2037,7 +2213,7 @@
                     "email": "fabien.potencier@gmail.com"
                 }
             ],
-            "time": "2017-09-29T21:04:50+00:00"
+            "time": "2017-10-06T18:48:20+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2416,12 +2592,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sroze/symfony.git",
-                "reference": "aa75883d21a42ffb5497f7855357b21066c2bd79"
+                "reference": "1202153a9bf3408f1ca8501cb201f22c8d0bc013"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sroze/symfony/zipball/aa75883d21a42ffb5497f7855357b21066c2bd79",
-                "reference": "aa75883d21a42ffb5497f7855357b21066c2bd79",
+                "url": "https://api.github.com/repos/sroze/symfony/zipball/1202153a9bf3408f1ca8501cb201f22c8d0bc013",
+                "reference": "1202153a9bf3408f1ca8501cb201f22c8d0bc013",
                 "shasum": ""
             },
             "require": {
@@ -2437,7 +2613,7 @@
                 "symfony/polyfill-intl-icu": "~1.0",
                 "symfony/polyfill-mbstring": "~1.0",
                 "symfony/polyfill-php72": "~1.5",
-                "twig/twig": "~1.34|~2.4"
+                "twig/twig": "^1.35|^2.4.4"
             },
             "conflict": {
                 "phpdocumentor/reflection-docblock": "<3.0||>=3.2.0,<3.2.2",
@@ -2565,7 +2741,7 @@
             "support": {
                 "source": "https://github.com/sroze/symfony/tree/add-message-component"
             },
-            "time": "2017-10-03 12:57:32"
+            "time": "2017-10-06 14:40:27"
         },
         {
             "name": "twig/extensions",
@@ -3082,16 +3258,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.3.9",
+            "version": "v3.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "27d159bd9bd14a3bd9d3e136081c321a0d621c03"
+                "reference": "6e40d1c8bc4037edf3852c0b29fdd2923c4e2133"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/27d159bd9bd14a3bd9d3e136081c321a0d621c03",
-                "reference": "27d159bd9bd14a3bd9d3e136081c321a0d621c03",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/6e40d1c8bc4037edf3852c0b29fdd2923c4e2133",
+                "reference": "6e40d1c8bc4037edf3852c0b29fdd2923c4e2133",
                 "shasum": ""
             },
             "require": {
@@ -3140,7 +3316,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-09-05T11:23:06+00:00"
+            "time": "2017-10-02T06:54:00+00:00"
         },
         {
             "name": "symfony/polyfill-php70",
@@ -3240,6 +3416,9 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "doctrine/doctrine-bundle": 20,
+        "sroze/swarrot-bridge": 20,
+        "swarrot/swarrot-bundle": 20,
         "symfony/symfony": 20
     },
     "prefer-stable": false,

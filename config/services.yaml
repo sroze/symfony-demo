@@ -56,3 +56,16 @@ services:
         arguments:
             $akismetApiKey: '%env(AKISMET_API_KEY)%'
         tags: [{name: 'message_handler', handles: 'App\Message\CheckSpamOnPostComments'}]
+
+    app.message_producer:
+        class: Sam\Symfony\Bridge\SwarrotMessage\SwarrotProducer
+        arguments:
+        - "@swarrot.publisher"
+        - "@message.transport.default_encoder"
+        - my_publisher
+
+    app.message_processor:
+        class: Sam\Symfony\Bridge\SwarrotMessage\SwarrotProcessor
+        arguments:
+        - "@message_bus"
+        - "@message.transport.default_decoder"
