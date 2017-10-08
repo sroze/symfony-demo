@@ -72,10 +72,100 @@ terminal.
 
 This application allows you to purge comments considered as spam using Akismet's API. While using the "Check comments"
 button in the backend, this is done synchronously by default. As the processing can be quite slow, it can be nice to
-do this processing asynchronously. In order to do so, follow these steps:
+do this processing asynchronously. 
 
-1. Pick and install a [Message adapter](https://github.com/sroze/symfony/blob/add-message-component/src/Symfony/Component/Message/README.md#adapters). 
-We will use PHP enqueue and its AMQP adapter for this example:
+Pick a [Message adapter](https://github.com/sroze/symfony/blob/add-message-component/src/Symfony/Component/Message/README.md#adapters)
+compatible with the Message component, install it, configure it and route some messages to it. This documentation contains 
+guides to use Swarrot and Php-Enqueue.
+
+- [With Swarrot](#with-swarrot)
+- [With Php-Enqueue](#with-php-enqueue)
+
+#### With Swarrot
+
+1. Install Swarrot's bridge
+```
+composer req sroze/swarrot-bridge:dev-master
+```
+
+2. Configure Swarrot Bundle within your application. 
+```yaml
+# config/packages/swarrot.yaml
+swarrot:
+    default_connection: rabbitmq
+    connections:
+        rabbitmq:
+            host: 'localhost'
+            port: 5672
+            login: 'guest'
+            password: 'guest'
+            vhost: '/'
+
+    consumers:
+        my_consumer:
+            processor: app.message_processor
+            middleware_stack:
+                 - configurator: swarrot.processor.signal_handler
+                 - configurator: swarrot.processor.max_messages
+                   extras:
+                       max_messages: 100
+                 - configurator: swarrot.processor.doctrine_connection
+                   extras:
+                       doctrine_ping: true
+                 - configurator: swarrot.processor.doctrine_object_manager
+                 - configurator: swarrot.processor.exception_catcher
+                 - configurator: swarrot.processor.ack
+
+    messages_types:
+        my_publisher:
+            connection: rabbitmq # use the default connection by default
+            exchange: my_exchange
+```
+
+**Important note:** Swarrot will not automatically create the exchanges, queues and bindings for you. You need to manually
+configure these within RabbitMq (or another connector you use).
+
+3. Register producer and processor.
+```yaml
+# config/services.yaml
+services:
+    # ...
+    
+    app.message_producer:
+        class: Sam\Symfony\Bridge\SwarrotMessage\SwarrotProducer
+        arguments:
+        - "@swarrot.publisher"
+        - "@message.transport.default_encoder"
+        - my_publisher
+
+    app.message_processor:
+        class: Sam\Symfony\Bridge\SwarrotMessage\SwarrotProcessor
+        arguments:
+        - "@message_bus"
+        - "@message.transport.default_decoder"
+```
+
+See that the processor is something Swarrot-specific. As Swarrot's power is to consume messages, we won't use the Message
+component's command in this context but Swarrot's command. [Via the bundle configuration](https://github.com/sroze/symfony-demo/blob/6afc2c6116466e1d3610abe7491d40035c0bf4b3/config/packages/swarrot.yaml#L14),
+we configure Swarrot to use our processor.
+
+4. Route your messages to the bus
+```yaml
+# config/packages/framework.yaml
+    message:
+        routing:
+            'App\Message\CheckSpamOnPostComments': app.message_producer
+```
+
+5. Consume your messages!
+```bash
+bin/console swarrot:consume:my_consumer queue_name_you_created
+```
+
+#### With Php-Enqueue
+
+1. Install the enqueue bridge and the enqueue AMQP extension. (Note that you can use any of the multiple php-enqueue extensions)
+
 ```
 composer req sroze/enqueue-bridge:dev-master enqueue/amqp-ext
 ```
