@@ -19,3 +19,7 @@ homepage:
         _controller: FrameworkBundle:Template:template
         template: default/homepage.html.twig
         _locale: '%locale%'
+
+http_messages:
+    resource: .
+    type: http_messages

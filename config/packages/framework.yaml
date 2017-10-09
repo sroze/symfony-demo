@@ -30,4 +30,6 @@ framework:
     validation: { enable_annotations: true }
     form: ~
     serializer: ~
-    message: ~
+    message:
+        routing:
+            'App\Message\CheckSpamOnPostComments': message_http_adapter.producer.requestbin

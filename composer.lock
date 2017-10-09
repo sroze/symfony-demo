@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "848885c9f9e9e66367c5b3645d051dcd",
+    "content-hash": "3e2650d4b57e833996ecd230f725e0f2",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1939,6 +1939,54 @@
             "time": "2017-08-22T22:18:16+00:00"
         },
         {
+            "name": "sroze/message-http-adapter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sroze/message-http-adapter.git",
+                "reference": "dfc142c9cd35a8ef88dca50bd448440c08a381b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sroze/message-http-adapter/zipball/dfc142c9cd35a8ef88dca50bd448440c08a381b3",
+                "reference": "dfc142c9cd35a8ef88dca50bd448440c08a381b3",
+                "shasum": ""
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sam\\Symfony\\Message\\HttpAdapter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Samuel Roze",
+                    "email": "samuel.roze@gmail.com"
+                }
+            ],
+            "description": "HTTP adapter for Symfony Message component",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "Guzzle",
+                "message",
+                "symfony"
+            ],
+            "time": "2017-10-08T12:33:26+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.0.2",
             "source": {
@@ -2565,7 +2613,7 @@
             "support": {
                 "source": "https://github.com/sroze/symfony/tree/add-message-component"
             },
-            "time": "2017-10-03 12:57:32"
+            "time": "2017-10-03T12:57:32+00:00"
         },
         {
             "name": "twig/extensions",
@@ -3240,6 +3288,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "sroze/message-http-adapter": 20,
         "symfony/symfony": 20
     },
     "prefer-stable": false,

@@ -1,0 +1,8 @@
+message_http_adapter:
+    consumers:
+        - path: '/api/check-spam-on-post-comments'
+          message: 'App\Message\CheckSpamOnPostComments'
+
+    producers:
+        requestbin:
+            endpoint: 'https://requestb.in/pdjzjmpd'

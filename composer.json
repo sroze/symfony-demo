@@ -12,6 +12,7 @@
         "guzzlehttp/guzzle": "~6.0",
         "sensio/framework-extra-bundle": "^3.0",
         "sensiolabs/security-checker": "^4.1",
+        "sroze/message-http-adapter": "dev-master",
         "symfony/asset": "^3.3",
         "symfony/expression-language": "^3.3",
         "symfony/flex": "^1.0",
