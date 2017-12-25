@@ -92,6 +92,15 @@
     "gecko-packages/gecko-php-unit": {
         "version": "v2.2"
     },
+    "guzzlehttp/guzzle": {
+        "version": "6.3.0"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.4.2"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -113,11 +122,23 @@
     "php-cs-fixer/diff": {
         "version": "v1.2.0"
     },
+    "phpdocumentor/reflection-common": {
+        "version": "1.0.1"
+    },
+    "phpdocumentor/reflection-docblock": {
+        "version": "4.2.0"
+    },
+    "phpdocumentor/type-resolver": {
+        "version": "0.4.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
     "psr/container": {
         "version": "1.0.0"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
     },
     "psr/log": {
         "version": "1.0.2"
@@ -239,6 +260,9 @@
     "symfony/intl": {
         "version": "v3.4.0-beta2"
     },
+    "symfony/message": {
+        "version": "4.0-dev"
+    },
     "symfony/monolog-bridge": {
         "version": "v3.4.0-beta2"
     },
@@ -290,6 +314,9 @@
     "symfony/property-access": {
         "version": "v3.4.0-beta2"
     },
+    "symfony/property-info": {
+        "version": "v4.0.2"
+    },
     "symfony/routing": {
         "version": "3.3",
         "recipe": {
@@ -310,6 +337,12 @@
             "version": "3.3",
             "ref": "85834af1496735f28d831489d12ab1921a875e0d"
         }
+    },
+    "symfony/serializer": {
+        "version": "v4.0.2"
+    },
+    "symfony/serializer-pack": {
+        "version": "v1.0.1"
     },
     "symfony/stopwatch": {
         "version": "v3.4.0-beta2"
@@ -382,6 +415,9 @@
     },
     "twig/twig": {
         "version": "v2.4.4"
+    },
+    "webmozart/assert": {
+        "version": "1.2.0"
     },
     "white-october/pagerfanta-bundle": {
         "version": "v1.0.8"
