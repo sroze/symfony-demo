@@ -12,9 +12,11 @@
 namespace App\Command;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -39,16 +41,21 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class DeleteUserCommand extends Command
 {
+    protected static $defaultName = 'app:delete-user';
+
+    /** @var SymfonyStyle */
     private $io;
     private $entityManager;
     private $validator;
+    private $users;
 
-    public function __construct(EntityManagerInterface $em, Validator $validator)
+    public function __construct(EntityManagerInterface $em, Validator $validator, UserRepository $users)
     {
         parent::__construct();
 
         $this->entityManager = $em;
         $this->validator = $validator;
+        $this->users = $users;
     }
 
     /**
@@ -57,7 +64,6 @@ class DeleteUserCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:delete-user')
             ->setDescription('Deletes users from the database')
             ->addArgument('username', InputArgument::REQUIRED, 'The username of an existing user')
             ->setHelp(<<<'HELP'
@@ -106,12 +112,11 @@ HELP
     {
         $username = $this->validator->validateUsername($input->getArgument('username'));
 
-        $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */
-        $user = $repository->findOneByUsername($username);
+        $user = $this->users->findOneByUsername($username);
 
         if (null === $user) {
-            throw new \RuntimeException(sprintf('User with username "%s" not found.', $username));
+            throw new RuntimeException(sprintf('User with username "%s" not found.', $username));
         }
 
         // After an entity has been removed its in-memory state is the same

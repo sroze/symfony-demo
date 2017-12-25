@@ -12,9 +12,11 @@
 namespace App\Command;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -44,6 +46,10 @@ use Symfony\Component\Stopwatch\Stopwatch;
  */
 class AddUserCommand extends Command
 {
+    // to make your command lazily loaded, configure the $defaultName static property,
+    // so it will be instantiated only when the command is actually called.
+    protected static $defaultName = 'app:add-user';
+
     /**
      * @var SymfonyStyle
      */
@@ -52,14 +58,16 @@ class AddUserCommand extends Command
     private $entityManager;
     private $passwordEncoder;
     private $validator;
+    private $users;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder, Validator $validator)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder, Validator $validator, UserRepository $users)
     {
         parent::__construct();
 
         $this->entityManager = $em;
         $this->passwordEncoder = $encoder;
         $this->validator = $validator;
+        $this->users = $users;
     }
 
     /**
@@ -68,8 +76,6 @@ class AddUserCommand extends Command
     protected function configure()
     {
         $this
-            // a good practice is to use the 'app:' prefix to group all your custom application commands
-            ->setName('app:add-user')
             ->setDescription('Creates users and stores them in the database')
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
@@ -193,19 +199,17 @@ class AddUserCommand extends Command
 
         $event = $stopwatch->stop('add-user-command');
         if ($output->isVerbose()) {
-            $this->io->comment(sprintf('New user database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', $user->getId(), $event->getDuration(), $event->getMemory() / pow(1024, 2)));
+            $this->io->comment(sprintf('New user database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', $user->getId(), $event->getDuration(), $event->getMemory() / (1024 ** 2)));
         }
     }
 
     private function validateUserData($username, $plainPassword, $email, $fullName)
     {
-        $userRepository = $this->entityManager->getRepository(User::class);
-
         // first check if a user with the same username already exists.
-        $existingUser = $userRepository->findOneBy(['username' => $username]);
+        $existingUser = $this->users->findOneBy(['username' => $username]);
 
         if (null !== $existingUser) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
+            throw new RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
         }
 
         // validate password and email if is not this input means interactive.
@@ -214,10 +218,10 @@ class AddUserCommand extends Command
         $this->validator->validateFullName($fullName);
 
         // check if a user with the same email already exists.
-        $existingEmail = $userRepository->findOneBy(['email' => $email]);
+        $existingEmail = $this->users->findOneBy(['email' => $email]);
 
         if (null !== $existingEmail) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" email.', $email));
+            throw new RuntimeException(sprintf('There is already a user registered with the "%s" email.', $email));
         }
     }
 
