@@ -202,7 +202,7 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('admin_post_index');
         }
 
-        $this->get('message_bus')->handle(new CheckSpamOnPostComments($post->getId()));
+        $this->get('message_bus')->dispatch(new CheckSpamOnPostComments($post->getId()));
         $this->addFlash('success', 'post.comments_checked');
 
         return $this->redirectToRoute('admin_post_show', ['id' => $post->getId()]);
