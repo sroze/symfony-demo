@@ -41,3 +41,18 @@ services:
             $akismetApiKey: '%env(AKISMET_API_KEY)%'
         tags:
             - message_handler
+
+    app.message_receiver:
+        class: Sam\Symfony\Bridge\EnqueueMessage\EnqueueReceiver
+        arguments:
+        - "@message.transport.default_decoder"
+        - "@enqueue.transport.default.context"
+        - "messages" # Name of the queue
+        public: true
+
+    app.message_sender:
+        class: Sam\Symfony\Bridge\EnqueueMessage\EnqueueSender
+        arguments:
+        - "@message.transport.default_encoder"
+        - "@enqueue.transport.default.context"
+        - "messages" # Name of the queue

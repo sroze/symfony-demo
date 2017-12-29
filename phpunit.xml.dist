@@ -22,6 +22,10 @@
         <!-- ###+ symfony/swiftmailer-bundle ### -->
         <env name="MAILER_URL" value="null://localhost"/>
         <!-- ###- symfony/swiftmailer-bundle ### -->
+
+        <!-- ###+ enqueue/enqueue-bundle ### -->
+        <env name="ENQUEUE_DSN" value="null://"/>
+        <!-- ###- enqueue/enqueue-bundle ### -->
     </php>
 
     <testsuites>
