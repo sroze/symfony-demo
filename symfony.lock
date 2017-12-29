@@ -74,6 +74,36 @@
     "egulias/email-validator": {
         "version": "2.1.2"
     },
+    "enqueue/amqp-ext": {
+        "version": "0.8.11"
+    },
+    "enqueue/amqp-tools": {
+        "version": "0.8.11"
+    },
+    "enqueue/async-event-dispatcher": {
+        "version": "0.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.7",
+            "ref": "9e937ccb79e08b978f91fb816d4e6d645813113a"
+        }
+    },
+    "enqueue/enqueue": {
+        "version": "0.8.11"
+    },
+    "enqueue/enqueue-bundle": {
+        "version": "0.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.4",
+            "ref": "daaea0035c3abd612f71f0288d5c20197c3c34ad"
+        }
+    },
+    "enqueue/null": {
+        "version": "0.8.11"
+    },
     "erusev/parsedown": {
         "version": "1.6.3"
     },
@@ -146,6 +176,15 @@
     "psr/simple-cache": {
         "version": "1.0.0"
     },
+    "queue-interop/amqp-interop": {
+        "version": "0.7.1"
+    },
+    "queue-interop/queue-interop": {
+        "version": "0.6.1"
+    },
+    "ramsey/uuid": {
+        "version": "3.7.1"
+    },
     "sensio/framework-extra-bundle": {
         "version": "4.0",
         "recipe": {
@@ -163,6 +202,9 @@
             "version": "4.0",
             "ref": "576d653444dade07f272c889d52fe4594caa4fc3"
         }
+    },
+    "sroze/enqueue-bridge": {
+        "version": "1.0-dev"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
