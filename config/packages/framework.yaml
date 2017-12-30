@@ -30,4 +30,4 @@ framework:
     serializer: ~
     message:
         routing:
-            'App\Message\CheckSpamOnPostComments': app.message_sender
+            'App\Message\CheckSpamOnPostComments': enqueue_bridge.sender

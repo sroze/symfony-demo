@@ -17,4 +17,5 @@ return [
     DAMA\DoctrineTestBundle\DAMADoctrineTestBundle::class => ['test' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     Enqueue\Bundle\EnqueueBundle::class => ['all' => true],
+    Sam\Symfony\Bridge\EnqueueMessage\Bundle\EnqueueBridgeBundle::class => ['all' => true],
 ];
