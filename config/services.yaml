@@ -41,3 +41,8 @@ services:
             $akismetApiKey: '%env(AKISMET_API_KEY)%'
         tags:
             - message_handler
+
+    App\MessageHandler\CreateNewUserHandler:
+        autowire: true
+        tags:
+            - message_handler
