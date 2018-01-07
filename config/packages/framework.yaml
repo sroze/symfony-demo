@@ -31,3 +31,4 @@ framework:
     message:
         routing:
             'App\Message\CheckSpamOnPostComments': enqueue_bridge.sender
+            #'App\Message\CreateNewUser': enqueue_bridge.sender

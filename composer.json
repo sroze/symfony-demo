@@ -14,21 +14,11 @@
         "sensio/framework-extra-bundle": "^5.0",
         "sensiolabs/security-checker": "^4.1",
         "sroze/enqueue-bridge": "dev-master",
-        "symfony/asset": "^4.0",
-        "symfony/expression-language": "^4.0",
         "symfony/flex": "^1.0",
-        "symfony/form": "^4.0",
-        "symfony/framework-bundle": "dev-add-message-component as 4.0",
-        "symfony/message": "dev-add-message-component as 4.0",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "^1.0",
-        "symfony/polyfill-apcu": "^1.5",
-        "symfony/security-bundle": "^4.0",
-        "symfony/serializer-pack": "^1.0",
         "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/translation": "^4.0",
-        "symfony/validator": "dev-master as 4.0",
-        "symfony/yaml": "^4.0",
+        "symfony/symfony": "dev-add-message-component as 4.0",
         "twig/extensions": "^1.5",
         "twig/twig": "^2.4",
         "white-october/pagerfanta-bundle": "^1.1"
@@ -70,13 +60,14 @@
             "security-checker security:check": "script"
         }
     },
-    "conflict": {
-        "symfony/symfony": "*"
-    },
     "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/sroze/message"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/sroze/symfony"
         },
         {
             "type": "vcs",
